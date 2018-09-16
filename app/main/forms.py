@@ -14,14 +14,14 @@ class UpdateProfile(FlaskForm):
 class AddBlog(FlaskForm):
     blog = TextAreaField('Write your blog',validators =[Required()])
     category = RadioField('Pick Category',
-                            choices=[('interview', 'interview'),
-                                  ('product', 'product'),
-                                     ('pick-up-lines', 'pick-up-lines')],
+                            choices=[('political', 'political'),
+                                  ('fashion', 'fashion'),
+                                     ('education', 'education')],
                             validators=[Required()])
     submit = SubmitField('Submit')
 
 class BlogForm(FlaskForm):
    category = StringField('Blog category',validators=[Required()])
-   content = TextAreaField(Blog, validators=[Required()])
+   content = TextAreaField('Blog', validators=[Required()])
 
    submit = SubmitField('Submit')

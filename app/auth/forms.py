@@ -24,7 +24,7 @@ class LoginForm(FlaskForm):
 class BlogForm(FlaskForm):
     blog = TextAreaField('Your Blog',validators=[Required()])
     my_category = SelectField('Category',
-                                choices=[('Pickup lines-Pitch'),
-                                         ('Interview-Pitch'),
-                                         ('Product-Pitch')],validators=[Required()])
+                                choices=[('Fashion-Blog'),
+                                         ('Political-Blog'),
+                                         ('Vehicles-Blog')],validators=[Required()])
     submit = SubmitField('Submit it!')

@@ -1,7 +1,7 @@
 from flask_login import login_required, current_user
 from flask import render_template,request,redirect,url_for,abort
 from ..models import  User,Blog,Comment
-from .forms import CommentForm,UpdateProfile,AddPitch
+from .forms import CommentForm,UpdateProfile,AddBlog
 from .. import db,photos
 from . import main
 import markdown2
@@ -34,21 +34,21 @@ def post():
     blog=Blog.query.all()
     return render_template('bloged.html',form=form, blog=blog)
 
-# @main.route('/pick', methods=['GET', 'POST'])
-# def pickup():
-#     pickup = Pitch.query.filter_by(pitch_category="pick-up-lines").all()
-#     print(pickup)
-#     return render_template('pickup.html', pitch=pickup)
-# @main.route('/Interview', methods=['GET', 'POST'])
-# def interview():
-#     interview = Pitch.query.filter_by(pitch_category="interview").all()
-#     print(interview)
-#     return render_template('interview.html', pitch=interview)
-# @main.route('/Product', methods=['GET', 'POST'])
-# def product():
-#     product = Pitch.query.filter_by(pitch_category="product").all()
-#     print(product)
-#     return render_template('product.html', pitch=product)
+@main.route('/Fashion', methods=['GET', 'POST'])
+def fashion():
+    fashion = Blog.query.filter_by(blog_category="fashion").all()
+    print(fashion)
+    return render_template('fashion.html', blog=fashion)
+@main.route('/Political', methods=['GET', 'POST'])
+def political():
+    political = Blog.query.filter_by(blog_category="political").all()
+    print(political)
+    return render_template('political.html', blog=political)
+@main.route('/Vehicle', methods=['GET', 'POST'])
+def vehicle():
+    vehicle = Blog.query.filter_by(Blog_category="vehicle").all()
+    print(vehicle)
+    return render_template('vehicle.html', blog=vehicle)
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
