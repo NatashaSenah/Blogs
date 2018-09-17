@@ -16,7 +16,7 @@ class AddBlog(FlaskForm):
     category = RadioField('Pick Category',
                             choices=[('political', 'political'),
                                   ('fashion', 'fashion'),
-                                     ('education', 'education')],
+                                     ('vehicle', 'vehicle')],
                             validators=[Required()])
     submit = SubmitField('Submit')
 
@@ -25,3 +25,8 @@ class BlogForm(FlaskForm):
    content = TextAreaField('Blog', validators=[Required()])
 
    submit = SubmitField('Submit')
+class PostForm(FlaskForm):
+    category = StringField('Blog category',validators=[Required()])
+    content = TextAreaField('Blog', validators=[Required()])
+
+    submit = SubmitField('Submit')

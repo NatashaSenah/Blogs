@@ -55,9 +55,15 @@
     <a href="#">Fashion</a>
     <a href="#">Political</a>
   </div>
+  <ul class="nav navbar-nav navbar-left">
+        {% if current_user.is_authenticated %}
+        <li><a href="{{url_for('main.update_pic',uname=current_user.username)}}">Profile</a></li>
+        <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+        {% else %}
+        <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+        {%endif%}
+      </ul>
   
-  <!-- <h2>Animated Sidenav Example</h2>
-  <p>Click on the element below to open the side navigation menu.</p> -->
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
   
   <script>

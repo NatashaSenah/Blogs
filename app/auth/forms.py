@@ -26,5 +26,5 @@ class BlogForm(FlaskForm):
     my_category = SelectField('Category',
                                 choices=[('Fashion-Blog'),
                                          ('Political-Blog'),
-                                         ('Vehicles-Blog')],validators=[Required()])
+                                         ('Vehicle-Blog')],validators=[Required()])
     submit = SubmitField('Submit it!')

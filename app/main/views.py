@@ -1,7 +1,7 @@
 from flask_login import login_required, current_user
 from flask import render_template,request,redirect,url_for,abort
 from ..models import  User,Blog,Comment
-from .forms import CommentForm,UpdateProfile,AddBlog
+from .forms import CommentForm,UpdateProfile,AddBlog,PostForm
 from .. import db,photos
 from . import main
 import markdown2
@@ -82,3 +82,16 @@ def update_pic(uname):
         user_photo = PhotoProfile(pic_path = path,user = user)
         db.session.commit()
     return redirect(url_for('main.update_profile',uname=uname))
+@main.route('/writer/dashboard', methods=['GET','POST'])
+@login_required
+def writer_dashboard():
+   Blog_form = BlogForm()
+   form_comment = CommentForm()
+   if post_form.validate_on_submit():
+       user = current_user
+       new_post = Post(title = post_form.title.data,post_content=post_form.post.data,category = post_form.category.data,user = user)
+       db.session.add(new_post)
+       db.session.commit()
+       return redirect(url_for('main.writer_dashboard',PostForm=post_form,form_comment=form_comment))
+   posts = Post.query.all()
+   return render_template('dashboard.html',PostForm=post_form,type='post',posts=posts,form_comment=form_comment)
