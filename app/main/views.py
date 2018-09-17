@@ -82,16 +82,15 @@ def update_pic(uname):
         user_photo = PhotoProfile(pic_path = path,user = user)
         db.session.commit()
     return redirect(url_for('main.update_profile',uname=uname))
-@main.route('/writer/dashboard', methods=['GET','POST'])
+@main.route('/fashion', methods=['GET','POST'])
 @login_required
-def writer_dashboard():
-   Blog_form = BlogForm()
-   form_comment = CommentForm()
+def fashion():
+   post_form = PostForm()
    if post_form.validate_on_submit():
        user = current_user
-       new_post = Post(title = post_form.title.data,post_content=post_form.post.data,category = post_form.category.data,user = user)
+       new_post = Blog(title = post_form.title.data,post_content=post_form.post.data,category = post_form.category.data,user = user)
        db.session.add(new_post)
        db.session.commit()
-       return redirect(url_for('main.writer_dashboard',PostForm=post_form,form_comment=form_comment))
-   posts = Post.query.all()
-   return render_template('dashboard.html',PostForm=post_form,type='post',posts=posts,form_comment=form_comment)
+       return redirect(url_for('main.writer_dashboard',PostForm=post_form))
+   posts = Blog.query.all()
+   return render_template('fashion.html',PostForm=post_form,posts=post)
